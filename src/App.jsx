@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTasks";
 import { v4 } from "uuid";
+import Title from "./components/Title";
 
 function App() {
   const [tasks, setTasks] = useState(
@@ -11,6 +12,22 @@ function App() {
   useEffect(()=>{
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks])
+
+  useEffect(()=> {
+    //Chama a API
+    const fetchTasks = async () => {
+      const response = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=10",
+        {method: "GET"}
+      );
+
+      //pegando os dados retornados
+      const data = await response.json(); //convertendo para JSON
+      //armazenando no stege
+      setTasks(data);
+    }
+    //Se quiser pode chama uma api para pegar as tarefas
+    //fetchTasks();
+  }, []); //Quando se passa uma lista vazia esse Effect só vai ser acessado a primeira vez que o usuario acessar.
 
   function onTaskClick(taskId){
     const newTasks = tasks.map(tasks => {
@@ -42,9 +59,9 @@ function App() {
   return (
     <div className="h-screen w-screen bg-slate-500 flex justify-center p-6">
       <div className="w-[500px] space-y-4">
-        <h1 className="text-3xl text-slate-100 font-bold text-center">
+        <Title>
           Gerenciador de Tarefas
-        </h1>
+        </Title>
         <AddTask onAddTaskSubmit={onAddTaskSubmit}/>
         <Tasks tasks={tasks} onTaskClick={onTaskClick} onDeleteTaskClick={onDeleteTaskClick}/>
       </div>
