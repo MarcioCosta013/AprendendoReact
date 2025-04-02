@@ -1,4 +1,10 @@
+[react]: https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB
+[vite]: https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white
+[tailwind]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
 # Aprendendo React
+![react][react]
+![vite][vite]
+![tailwind][tailwind]
 
 Este repositório contém um projeto de estudo para aprender React, configurado com Vite para um ambiente de desenvolvimento rápido e eficiente.
 
